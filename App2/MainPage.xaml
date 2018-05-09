@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="App2.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App2"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Loaded="background">
+    
+    <!--<ScrollViewer>
+        <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <TextBox x:Name="message" Height="100" Width="800" Text="1"/>
+            <TextBox x:Name="me" Height="100" Width="800" Text="1"/>
+            <TextBox x:Name="user" Height="100" Width="800" Text="1"/>
+            <Button Click="Get_Contact" Content="Get_Contact"/>
+            <Button Click="Send_Message" Content="Send_Message"/>
+        </StackPanel>
+    </ScrollViewer>-->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListView Grid.Column="0" x:Name="MyList" IsItemClickEnabled="True"
+                      ItemsSource="{x:Bind ContactView.AllItems}" ItemClick="Get_Dialog">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:FriendList">
+                    <TextBlock Width="350" Height="100" Margin="0,12,0,0" Text="{x:Bind NickName}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="dialog" Grid.Row="0" Height="auto" Width="auto"/>
+            <TextBox x:Name="send" Grid.Row="1" Height="auto" Width="auto"/>
+            <Button Grid.Row="2" Content="发送" Click="Send_Message"/>
+        </Grid>
+    </Grid>
+</Page>
